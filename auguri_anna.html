@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buon Compleanno Anna!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #fdfbf7; /* Colore di sfondo morbido */
+            color: #1e3a8a; /* Blu scuro per il testo */
+            overflow: hidden; /* Nascondi la barra di scorrimento per gli effetti a schermo intero */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fredoka One', cursive;
+        }
+
+        /* Stili per le scene */
+        .scene {
+            display: none; /* Nascondi tutte le scene di default */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .scene.active {
+            display: flex; /* Mostra solo la scena attiva */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Bottone in stile pop-punk anni 2000 */
+        .btn-punk {
+            background-color: #ff007f; /* Rosa acceso */
+            color: white;
+            border: 3px solid #111; /* Bordo nero spesso */
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px #111; /* Ombra netta */
+            transition: all 0.1s;
+            margin-top: 20px;
+            font-family: 'Fredoka One', cursive;
+            border-radius: 8px;
+        }
+
+        .btn-punk:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px #111;
+        }
+
+        .btn-punk:hover {
+             background-color: #e60073;
+        }
+
+        /* Elementi visivi */
+        .emoji-large {
+            font-size: 5rem;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        .wobble {
+            animation: wobble 2s linear infinite;
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: translateX(0%); }
+            15% { transform: translateX(-15px) rotate(-5deg); }
+            30% { transform: translateX(10px) rotate(3deg); }
+            45% { transform: translateX(-10px) rotate(-3deg); }
+            60% { transform: translateX(5px) rotate(2deg); }
+            75% { transform: translateX(-5px) rotate(-1deg); }
+        }
+
+        /* Scene Specific Styles */
+        #scene-scuba {
+            background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        #scene-cat {
+             background-color: #fff3e0;
+        }
+
+        #scene-delay {
+             background-color: #ffebee;
+        }
+
+        #scene-party {
+            background: repeating-linear-gradient(
+              45deg,
+              #ff007f,
+              #ff007f 20px,
+              #111 20px,
+              #111 40px
+            );
+            color: white;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        .party-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            border: 4px solid #111;
+            color: #111;
+            text-shadow: none;
+            max-width: 90%;
+        }
+
+        /* Effetto coriandoli semplice */
+        .confetti-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 100;
+            display: none;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Scena 1: Introduzione -->
+<div id="scene-intro" class="scene active">
+    <div class="emoji-large floating">🍷</div>
+    <h1 class="text-5xl md:text-7xl font-bold mb-4 text-blue-900">Ehi Anna!</h1>
+    <p class="text-xl md:text-2xl mb-8 font-bold">Abbiamo una notizia importante...</p>
+    <button class="btn-punk" onclick="nextScene('scene-cat')">Cosa succede?</button>
+</div>
+
+<!-- Scena 2: Il Gatto -->
+<div id="scene-cat" class="scene">
+    <div class="emoji-large">🐈</div>
+    <h2 class="text-4xl md:text-5xl font-bold mb-4 text-orange-600">Oggi è il tuo giorno!</h2>
+    <p class="text-lg md:text-xl mb-6 max-w-md mx-auto">Speriamo che il tuo gatto ti abbia già fatto gli auguri (o almeno non ti abbia svegliato troppo presto).</p>
+    <button class="btn-punk" onclick="nextScene('scene-scuba')">Continua...</button>
+</div>
+
+<!-- Scena 3: Immersioni -->
+<div id="scene-scuba" class="scene">
+    <div class="emoji-large floating">🤿 🐟</div>
+    <h2 class="text-4xl md:text-5xl font-bold mb-4">Un anno profondo!</h2>
+    <p class="text-lg md:text-xl mb-6 max-w-md mx-auto text-white">Preparati a tuffarti nei tuoi 35 anni! Speriamo siano pieni di immersioni spettacolari e mare cristallino.</p>
+    <button class="btn-punk border-white" style="background-color: #1e3a8a; color: white;" onclick="nextScene('scene-delay')">E poi?</button>
+</div>
+
+<!-- Scena 4: Il Ritardo -->
+<div id="scene-delay" class="scene">
+    <div class="emoji-large wobble">⏱️ 🐢</div>
+    <h2 class="text-4xl md:text-5xl font-bold mb-4 text-red-600">Tranquilla, sei in tempo!</h2>
+    <p class="text-lg md:text-xl mb-6 max-w-md mx-auto">Sappiamo che il tuo "più grande difetto" è essere sempre super in ritardo...</p>
+    <p class="text-lg md:text-xl mb-6 font-bold">Ma per compiere 35 anni sei arrivata puntualissima!</p>
+    <button class="btn-punk" onclick="nextScene('scene-party')">Festeggiamo!</button>
+</div>
+
+<!-- Scena 5: Party Pop-Punk -->
+<div id="scene-party" class="scene">
+    <div class="confetti-container" id="confetti"></div>
+    <div class="party-box text-center shadow-xl">
+        <h1 class="text-6xl md:text-8xl font-bold mb-2 text-pink-600">BUON<br>COMPLEANNO<br>ANNA!</h1>
+        <h2 class="text-3xl font-bold mb-4">- 35 ANNI -</h2>
+        <div class="text-4xl mb-4">🎸 🛹 🤘</div>
+        <p class="text-lg md:text-xl mb-4 font-bold text-gray-800">Metti su la tua playlist pop-punk anni 2000 preferita, stappa una bottiglia e festeggia alla grande!</p>
+        <p class="text-sm text-gray-600 mt-4">Un augurio speciale da tutti i colleghi della SRU del Canton Ticino (e non solo)!</p>
+        
+        <button class="btn-punk mt-6" onclick="restart()">Ricomincia</button>
+    </div>
+</div>
+
+<script>
+    // Funzione per navigare tra le scene
+    function nextScene(nextSceneId) {
+        // Nascondi tutte le scene
+        const scenes = document.querySelectorAll('.scene');
+        scenes.forEach(scene => scene.classList.remove('active'));
+
+        // Mostra la scena successiva
+        const nextScene = document.getElementById(nextSceneId);
+        if (nextScene) {
+            nextScene.classList.add('active');
+        }
+
+        // Se è la scena finale del party, lancia i coriandoli
+        if (nextSceneId === 'scene-party') {
+            triggerConfetti();
+        }
+    }
+
+    // Funzione per tornare all'inizio
+    function restart() {
+        nextScene('scene-intro');
+        // Ferma i coriandoli se ricomincia
+        document.getElementById('confetti').style.display = 'none';
+        document.getElementById('confetti').innerHTML = ''; 
+    }
+
+    // Semplice sistema di coriandoli
+    function triggerConfetti() {
+        const container = document.getElementById('confetti');
+        container.style.display = 'block';
+        container.innerHTML = ''; // Pulisci coriandoli precedenti
+
+        const colors = ['#ff007f', '#00f2fe', '#ffd700', '#00ff00', '#ff8c00'];
+
+        for (let i = 0; i < 100; i++) {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            
+            // Posizione e animazione random
+            const startPosX = Math.random() * 100;
+            const fallDuration = Math.random() * 3 + 2; // tra 2 e 5 secondi
+            const delay = Math.random() * 2;
+            
+            confetti.style.left = startPosX + 'vw';
+            confetti.style.top = '-10px';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDuration = fallDuration + 's';
+            confetti.style.animationDelay = delay + 's';
+            
+            // Forme random (quadrati e rettangoli)
+            if (Math.random() > 0.5) {
+                confetti.style.width = '15px';
+                confetti.style.height = '5px';
+            }
+
+            container.appendChild(confetti);
+        }
+    }
+</script>
+
+</body>
+</html>
